@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+
+      .bg-border_custom_warmsand {
+        border: 3px solid #C2B280;
+      }
+
+      .bg-border-b_custom_warmsand {
+        border-bottom: 2px solid #C2B280;
+      }
+
+      .bg-button_custom_warmsand {
+        border: 1px solid #C2B280;
+      }
+
+      .headline {
+        color: #001F3F;
+        background-color: #C2B280;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+            color: #001F3F
+        }
+
+        th {
+            background-color: #C2B280;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dbd9d9;
+        }
+
+        .text_custom_blue {
+            color:#001F3F;
+            
+        }
+
+    </style>
+    <title>Moinso Event Organizer Management System</title>
+
+</head>
+<body class="h-screen w-screen p-2">
+    
+    
+    <div class="grid grid-cols-6 grid-rows-5 gap-2 grid-cols-1">
+        <div class="col-span-2 row-span-2">
+            <div class="flex justify-content items-center h-full">
+                <img src="./EventOrg_photo.png" alt="" class="rounded-2xl">
+            </div>
+        </div>
+
+
+        <div class="col-span-2 row-span-3 col-start-1 row-start-3">
+            <div class="h-full bg-border_custom_warmsand rounded-2xl p-6 w-full flex justify-center items-center">
+        
+            <div class="text-center w-full max-w-sm space-y-8">
+              
+                <div id="form" class="space-y-4">
+                    
+                    <div class="flex flex-col items-center">
+                        <label for="event" class="text_custom_blue text-lg font-semibold">Event</label>
+                        <select name="event" id="event" class="bg-transparent border-b-2 border_custom_warmsand w-full py-2 outline-none cursor-pointer">
+                            <option value="" disabled selected>Choose Event</option>
+                            <option value="Anniversary">Anniversary</option>
+                            <option value="Birthday">Birthday</option>
+                            <option value="Wedding">Wedding</option>
+                            <option value="Conference">Conference</option>
+                            <option value="Festival">Festival</option>
+                            <option value="Reunion">Reunion</option>
+                            <option value="Concert">Concert</option>
+                            <option value="Fashion Show">Fashion Show</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <label for="date" class="text_custom_blue text-md font-semibold">Date</label>
+                        <input type="datetime-local" name="date" id="dateTime" class="bg-transparent border-b-2 border_custom_warmsand w-full py-2 outline-none" required>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <label for="location" class="text_custom_blue text-lg font-semibold">Address</label>
+                        <input type="text" name="location" id="address" class="text-start bg-transparent border-b-2 border_custom_warmsand w-full py-2 outline-none text-center" placeholder="Sariaya, Quezon" required>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <label for="reservationName" class="text_custom_blue text-lg font-semibold">Reservation Name</label>
+                        <input type="text" name="reservationName" id="reservationName" class="text-start bg-transparent border-b-2 border_custom_warmsand w-full py-2 outline-none text-center" placeholder="Kim Louren Luna" required>
+                    </div>
+                    
+                </div>
+
+                <div class="pt-4">
+                    <button type="button" id="add" class="bg-button_custom_warmsand w-full rounded-lg py-2 font-bold hover:bg-[#C2B280] transition duration-500 shadow-md">
+                        Add Event
+                    </button>
+                    <button type="button" id="update" class="hidden bg-button_custom_warmsand w-full rounded-lg py-2 font-bold hover:bg-[#C2B280] transition duration-500 shadow-md">
+                        Update Event
+                    </button>
+                    <input type="hidden" id="ID">
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="col-span-4 row-span-5 col-start-3 row-start-1">
+            <div class="h-full rounded-xl bg-border_custom_warmsand">
+                <div class="headline rounded-t-xl">
+                    <h1 class="text-center text-3xl m-4 font-bold py-1">Event Management System</h1>
+                </div>
+                <div class="overflow-y-auto h-screen flex justify-center">
+                    <table class="table-auto border-spacing-0  h-[5rem]">
+                        <thead class="sticky top-0 z-10">
+                            <tr class="bg-border_custom_warmsand text-lg">
+                                <th class="">Event</th>
+                                <th class="flex justify-between">
+                                  <div class="">Date</div>
+                                  <div>Time</div>
+                                </th>
+                                <th class="">Location</th>
+                                <th class="">Reservation Name</th>
+                                <th class="">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content">
+                        </tbody>
+                    </table>
+        </div>
+            </div>
+        </div>
+    </div>
+    
+    
+<script src="./index.js"></script>
+    
+    
+</body>
+</html>
