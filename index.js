@@ -48,19 +48,16 @@ function getEventList(){
     .then(data=>{
         console.log(data);
         data.forEach(element=>{
-            // html+=`<li> ${element.first_name} ${element.last_name} <a href="javascript:void(0)" onClick="deleteMember(${element.id})">Delete</a>
-            // <a href="javascript:void(0)" onClick="updateMember(${element.id})">Update</a></li>`
 
             const eventDate = new Date(element.date_time);
 
-            // 2. I-format ito sa "January 12, 2026"
             const formattedDate = eventDate.toLocaleDateString('en-US', {
                 month: 'long',
                 day: 'numeric',
                 year: 'numeric'
             });
 
-            // Custom format (halimbawa: 21:45)
+
             const formattedTime = eventDate.toLocaleTimeString('en-GB', { 
             hour: '2-digit', 
             minute: '2-digit', 
@@ -133,7 +130,6 @@ function deleteEvent(id){
 
         const eventDate = new Date(data[0].date_time);
 
-        // Format para sa datetime-local input: "yyyy-MM-ddThh:mm"
         const yyyy = eventDate.getFullYear();
         const MM = String(eventDate.getMonth() + 1).padStart(2, '0');
         const dd = String(eventDate.getDate()).padStart(2, '0');
@@ -143,7 +139,7 @@ function deleteEvent(id){
         const formattedForInput = `${yyyy}-${MM}-${dd}T${hh}:${mm}`;
 
         document.querySelector("#event").value = data[0].event_name;
-        document.querySelector("#dateTime").value = formattedForInput; // ✅ tamang format na
+        document.querySelector("#dateTime").value = formattedForInput;
         document.querySelector("#address").value = data[0].address;
         document.querySelector("#reservationName").value = data[0].reservation_name;
         document.querySelector("#ID").value = data[0].id;
