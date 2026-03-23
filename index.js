@@ -49,19 +49,21 @@ function getEventList(){
         console.log(data);
         data.forEach(element=>{
 
-            const eventDate = new Date(element.date_time);
+            const eventDate = new Date(element.date_time.replace(' ', 'T'));
 
             const formattedDate = eventDate.toLocaleDateString('en-US', {
                 month: 'long',
                 day: 'numeric',
-                year: 'numeric'
+                year: 'numeric',
+                timeZone: 'UTC'
             });
 
 
-            const formattedTime = eventDate.toLocaleTimeString('en-GB', { 
+            const formattedTime = eventDate.toLocaleTimeString('en-US', { 
             hour: '2-digit', 
             minute: '2-digit', 
-            hour12: false 
+            hour12: true,
+            timeZone: 'UTC'
             });
 
             html+=`
@@ -129,6 +131,7 @@ function deleteEvent(id){
         update.classList.remove("hidden")
 
         const eventDate = new Date(data[0].date_time);
+        eventDate.setHours(eventDate.getHours() - 8);
 
         const yyyy = eventDate.getFullYear();
         const MM = String(eventDate.getMonth() + 1).padStart(2, '0');
@@ -165,9 +168,15 @@ update.addEventListener('click', () => {
         headers : {
             "Content-Type" : "application/json",
         },
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Event Updated Successfully");
+            location.reload(); 
+        } else {
+            alert("Update Error.");
+        }
     }).catch((error)=>{
         console.log(error);
     })
-    alert("User Updated Successfully")
-    location.reload();
 })
